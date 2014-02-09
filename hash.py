@@ -1,22 +1,35 @@
 '''
 Created on Feb 8, 2014
 
-@author: Jocelyn
+@author: Jocelyn, zlychaos
 '''
 import string
 import operator
+import re
 
+'''
 def store2Hash(s, dic, weight):
-    term_list=s.split(" ")
-    delset = string.punctuation+"\n"
+    term_list=re.split("[^a-zA-Z]",s)
+    #delset = string.punctuation+"\n"
     for i in range(len(term_list)):
-        term_list[i]=term_list[i].lower().translate(None,delset)
+        term_list[i]=term_list[i].lower()#.translate(None,delset)
         if term_list[i]!="":
             if dic.has_key(term_list[i]):
                 dic[term_list[i]]+=weight
             else:
                 dic[term_list[i]]=weight
+'''
 
+def store2Hash(str, dic, weight):
+    term_list=re.split("[^a-zA-Z]",str)
+    #delset = string.punctuation+"\n"
+    for term in term_list:
+        term=term.lower()
+        if term!="":
+            if dic.has_key(term):
+                dic[term]+=weight
+            else:
+                dic[term]=weight
 
 if __name__ =="__main__":
     dic_q={};
