@@ -23,13 +23,13 @@ def getResult(query):
 def display(result):
     i = 0
     for item in result:
-            i = i+1
-            print "--------------------"
-            print i
-            print "--------------------"
-            print "Title:  "+item[u'Title']
-            print "Description:"
-            print item[u'Description']
+        i = i+1
+        print "--------------------"
+        print i
+        print "--------------------"
+        print "Title:  "+item[u'Title']
+        print "Description:"
+        print item[u'Description']
         print item[u'Url']
 
 
