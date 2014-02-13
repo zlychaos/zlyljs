@@ -118,14 +118,14 @@ if __name__ =="__main__":
         list_keys=list(set(dic_q.keys()+dic_rel.keys()+dic_nonrel.keys()))
         for key in list_keys:
             dic_result[key]=dic_q.get(key,0)+dic_rel.get(key,0)+dic_nonrel.get(key,0)
-	print dic_result
+        print dic_result
         top1 = max(dic_result.iteritems(), key=operator.itemgetter(1))[0]
         del dic_result[top1]
         top2 = max(dic_result.iteritems(), key=operator.itemgetter(1))[0]
         print "\n--------------------\n"
-	print top1 +", "+top2
-	print "\n--------------------\n"
-
-	print search_promt
-	line=sys.stdin.readline()
-	target = float(raw_input(target_promt))
+        print top1 +", "+top2
+        print "\n--------------------\n"
+    
+        print search_promt
+        line=sys.stdin.readline()
+        target = float(raw_input(target_promt))
