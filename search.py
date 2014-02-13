@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import urllib2
 import base64
 import json
@@ -101,9 +104,9 @@ if __name__ =="__main__":
         rel = display(result)
         if rel >= target*10:
             print "succeed!"
-        print search_promt
-        line = sys.stdin.readline()
-        target = float(raw_input(target_promt))
+        #print search_promt
+        #line = sys.stdin.readline()
+        #target = float(raw_input(target_promt))
         
         b/=len(des_list_rel)
         for l in des_list_rel:   
@@ -120,4 +123,9 @@ if __name__ =="__main__":
         top1 = max(dic_result.iteritems(), key=operator.itemgetter(1))[0]
         del dic_result[top1]
         top2 = max(dic_result.iteritems(), key=operator.itemgetter(1))[0]
-        print top1 +", "+top2
+        print "\n--------------------\n"
+	print top1 +", "+top2
+	print "\n--------------------\n"
+	print search_promt
+	line=sys.stdin.readline()
+	target = float(raw_input(target_promt))
