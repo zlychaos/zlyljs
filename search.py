@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import urllib2
@@ -67,7 +67,7 @@ def display(result):
         print "--------------------"
         print "Title:  "+item[u'Title']
         print "Description:"
-        print item[u'Description']
+        print item[u'Description'].encode('utf-8')
         print item[u'Url']
         item[u'relevant'] = bool_promt(relevant_promt)
         if item[u'relevant']:
