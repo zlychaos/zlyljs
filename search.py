@@ -20,6 +20,7 @@ target_promt = "Please input the target( 0.1 ~ 1 ): "
 relevant_promt = "Is this result relevant? [Y/n]"
 invalid_yes_no = "Please respond with 'yes' or 'no'"
 
+stop_words = ['the', 'a', ]
 dic_q={};
 dic_rel={}
 dic_nonrel={}
@@ -104,9 +105,6 @@ if __name__ =="__main__":
         rel = display(result)
         if rel >= target*10:
             print "succeed!"
-        #print search_promt
-        #line = sys.stdin.readline()
-        #target = float(raw_input(target_promt))
         
         b/=len(des_list_rel)
         for l in des_list_rel:   
@@ -120,12 +118,14 @@ if __name__ =="__main__":
         list_keys=list(set(dic_q.keys()+dic_rel.keys()+dic_nonrel.keys()))
         for key in list_keys:
             dic_result[key]=dic_q.get(key,0)+dic_rel.get(key,0)+dic_nonrel.get(key,0)
+	print dic_result
         top1 = max(dic_result.iteritems(), key=operator.itemgetter(1))[0]
         del dic_result[top1]
         top2 = max(dic_result.iteritems(), key=operator.itemgetter(1))[0]
         print "\n--------------------\n"
 	print top1 +", "+top2
 	print "\n--------------------\n"
+
 	print search_promt
 	line=sys.stdin.readline()
 	target = float(raw_input(target_promt))
