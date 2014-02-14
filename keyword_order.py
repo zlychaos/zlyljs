@@ -17,9 +17,9 @@ def set_order(keywords, results):
             if word2 != word1:
                 matrix[word1][word2] = 0
                 for item in results:
-                    print word1.lower()+".{0,17}"+word2.lower()
-                    if re.search(word1.lower()+".{0,17}"+word2.lower(),item[u'Description'].encode('utf-8').lower()):
-                        print "Got you!!!!"
+                    #print word1.lower()+".{0,17}"+word2.lower()
+                    if re.search(word1.lower()+".{1,5}"+word2.lower(),item[u'Description'].encode('utf-8').lower()):
+                        #print "Got you!!!!"
                         if item[u'relevant']:
                             matrix[word1][word2] = matrix[word1][word2] + 1
                         else:
@@ -32,8 +32,8 @@ def set_order(keywords, results):
         words_list.remove(word1)
         curr_word = word1
         while len(query) < len(keywords):
-            print query
-            print words_list
+            #print query
+            #print words_list
             word_to_add = None
             for word2 in words_list:
                 if word2 not in query and ( word_to_add==None or ( matrix[curr_word].has_key(word2) and  matrix[curr_word][word2]>matrix[curr_word][word_to_add] ) ):
