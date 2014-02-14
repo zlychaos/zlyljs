@@ -8,6 +8,7 @@ import sys
 import string
 import operator
 import re
+import keyword_order
 
 #Provide your account key here
 accountKey = 'wzQz8YO7jqhGSx1UpWwYRiVwlb3KuGOxavRpambmZY8'
@@ -59,9 +60,9 @@ def getResult(query):
     response = urllib2.urlopen(req)
     content = response.read()
     #content contains the xml/json response from Bing. 
-    #print content
     json_content = json.loads(content)
     result = json_content["d"]["results"]
+    print result
     return result
 
 def bool_promt(question):
@@ -88,7 +89,7 @@ def display(result):
         print "--------------------"
         print "Title:  "+item[u'Title']
         print "Description:"
-        print item[u'Description'].encode('utf-8')
+        print item[u'Description'].encode("utf-8")
         print item[u'Url']
         item[u'relevant'] = bool_promt(relevant_promt)
         if item[u'relevant']:
@@ -155,9 +156,11 @@ if __name__ =="__main__":
         list_keys=[]
         words = line.split()
         query = ''
+        query_list = []
         stop_words=stop_words_ini[:]
         for word in words:
             query = query + word + '%27'
+            query_list.append(word)
             stop_words.append(word)
         result = getResult(query)
         rel = display(result)
@@ -182,11 +185,17 @@ if __name__ =="__main__":
         addQuery(dic_result)
         print "\n--------------------"
         if top1!="":
+            query_list.append(top1)
             print "\ntop1: "+top1
         if top2!="":
+            query_list.append(top2)
             print "\ntop2: "+top2
         print "\n--------------------\n"
-    
+        
+        best_query = keyword_order.set_order(query_list, result)
+        print "suggest next query"
+        print best_query
+
         print search_promt
         line=sys.stdin.readline()
         target = float(raw_input(target_promt))
