@@ -8,7 +8,6 @@ import sys
 import string
 import operator
 import re
-import keyword_order
 
 #Provide your account key here
 accountKey = 'wzQz8YO7jqhGSx1UpWwYRiVwlb3KuGOxavRpambmZY8'
@@ -47,6 +46,8 @@ dic_rel={}
 dic_nonrel={}
 des_list_rel=[]
 des_list_nonrel=[]
+title_list_rel=[]
+title_list_nonrel=[]
 dic_result={}
 list_keys=[]
 
@@ -60,9 +61,9 @@ def getResult(query):
     response = urllib2.urlopen(req)
     content = response.read()
     #content contains the xml/json response from Bing. 
+    #print content
     json_content = json.loads(content)
     result = json_content["d"]["results"]
-    print result
     return result
 
 def bool_promt(question):
@@ -89,14 +90,16 @@ def display(result):
         print "--------------------"
         print "Title:  "+item[u'Title']
         print "Description:"
-        print item[u'Description'].encode("utf-8")
+        print item[u'Description'].encode('utf-8')
         print item[u'Url']
         item[u'relevant'] = bool_promt(relevant_promt)
         if item[u'relevant']:
             rel = rel + 1
             des_list_rel.append(item[u'Description'])
+            title_list_rel.append(item[u'Title'])
         else:
             des_list_nonrel.append(item[u'Description'])
+            title_list_nonrel.append(item[u'Title'])
         
     return rel
 
@@ -112,6 +115,7 @@ def store2Hash(str, dic, weight):
                 dic[term]+=weight
             else:
                 dic[term]=weight
+                
                 
 def addQuery(dic_result):
     global top1
@@ -156,11 +160,9 @@ if __name__ =="__main__":
         list_keys=[]
         words = line.split()
         query = ''
-        query_list = []
         stop_words=stop_words_ini[:]
         for word in words:
             query = query + word + '%27'
-            query_list.append(word)
             stop_words.append(word)
         result = getResult(query)
         rel = display(result)
@@ -171,10 +173,15 @@ if __name__ =="__main__":
             b/=len(des_list_rel)
         for l in des_list_rel:   
             store2Hash(l,dic_rel,b)
+        for l in title_list_rel:   
+            store2Hash(l,dic_rel,2*b)
+            
         if len(des_list_nonrel)!=0:
             c/=len(des_list_nonrel)
         for l in des_list_nonrel:   
             store2Hash(l,dic_nonrel,c)
+        for l in title_list_nonrel:   
+            store2Hash(l,dic_nonrel,2*c)
             
         store2Hash(line,dic_q,a)
         list_keys=list(set(dic_q.keys()+dic_rel.keys()+dic_nonrel.keys()))
@@ -185,17 +192,11 @@ if __name__ =="__main__":
         addQuery(dic_result)
         print "\n--------------------"
         if top1!="":
-            query_list.append(top1)
             print "\ntop1: "+top1
         if top2!="":
-            query_list.append(top2)
             print "\ntop2: "+top2
         print "\n--------------------\n"
-        
-        best_query = keyword_order.set_order(query_list, result)
-        print "suggest next query"
-        print best_query
-
+    
         print search_promt
         line=sys.stdin.readline()
         target = float(raw_input(target_promt))
