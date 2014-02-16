@@ -100,15 +100,17 @@ if __name__ =="__main__":
 
         else:
             flag = False
-            best_query = rocchio(result, query_list)
             print '=========================================='
             print 'FEEDBACK SUMMARY'
             print "This Query : "
-            print query_list
+            print " ".join( word for word in query_list )
+            #print query_list
             print 'target : ' + str(target)
             print 'precision : ' + str( float(rel)/len(result) ) + " | still below the target"
             print "Next Query : "
-            print best_query
+            best_query = rocchio(result, query_list)
+            print " ".join( word for word in best_query )
+            #print best_query
             print '=========================================='
         
         if flag:
