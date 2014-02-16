@@ -17,7 +17,7 @@ headers = {'Authorization': 'Basic ' + accountKeyEnc}
 #messages
 search_promt = "Please type the search key words: "
 target_promt = "Please input the target( 0.1 ~ 1 ): "
-relevant_promt = "Is this result relevant? [Y/n]"
+relevant_promt = "Is this result relevant? [Y/N]"
 invalid_yes_no = "Please respond with 'yes' or 'no'"
 
 def getResult(query):
