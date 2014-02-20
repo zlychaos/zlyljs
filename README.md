@@ -41,6 +41,7 @@ We listed as many as 174 stop words which will not be considered as words of exp
 * Order of terms in the query is taken into consideration.
 After determining set of terms included in expansion query using modified rocchio algorithms mentioned above, we assign a weight to every permutation of two terms in the expanded query, which shows how frequently two terms appear in relevant documents very close to each other with certain order, and how infrequently that happens in unrelevant documents. And then we return the permutation of all terms that maximize the sum of weights of every two adjacent terms, which we suggest as best query for next iteration.
 
+
 Bing Search Account Key
 -----------------------
 wzQz8YO7jqhGSx1UpWwYRiVwlb3KuGOxavRpambmZY8
