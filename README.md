@@ -6,11 +6,11 @@ Jingsi Li ( jl4165 )
 
 File List
 ---------
-search.py
-keyword_order.py
-rocchio.py
-README
-akefile
+* search.py
+* keyword_order.py
+* rocchio.py
+* README
+* Makefile
 
 How to Run the Program
 ----------------------
