@@ -94,6 +94,8 @@ if __name__ =="__main__":
 
         if len(result) < 10:
             print "# of results less than 10"
+        elif rel == 0:
+            print "No relevant result. Query failed."
         elif rel >= target*len(result):
             print "succeed!"
             print '<<<<<<<<<<<<<Query Feedback>>>>>>>>>>>>>>>'
