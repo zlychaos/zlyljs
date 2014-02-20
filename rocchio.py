@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Modified rocchio algorithm
+# Simply call function rocchio to get the best query for next iteration
+# with parameters of results( with relevance feedback ) and the query used( as a list of terms)
+
 import json
 import operator
 import re
@@ -29,6 +33,7 @@ stop_words_ini =["a","about","above","after","again","against","all","am","an","
              "who","who's","whom","why","why's","with","won't","would","wouldn't","you",
              "you'd","you'll","you're","you've","your","yours","yourself","yourselves"]
 
+# add weight of a term into vector
 def store2Hash(str, dic, weight):
     term_list=re.split("[^a-zA-Z]",str)
     #delset = string.punctuation+"\n"
@@ -40,7 +45,7 @@ def store2Hash(str, dic, weight):
             else:
                 dic[term]=weight
                 
-                
+# find the two best terms to add into next query
 def addQuery(dic_result):
     global top1
     global top2

@@ -20,6 +20,7 @@ target_promt = "Please input the target( 0.1 ~ 1 ): "
 relevant_promt = "Is this result relevant? [Y/N]"
 invalid_yes_no = "Please respond with 'yes' or 'no'"
 
+# use Bing API to get results of a query
 def getResult(query):
     bingUrl = 'https://api.datamarket.azure.com/Bing/Search/Web?Query=%27' + query + '&$top=10&$format=json'
     print "The request url: " + bingUrl
@@ -32,6 +33,7 @@ def getResult(query):
     result = json_content["d"]["results"]
     return result
 
+# promt user to give a relevance feedback on one result
 def bool_promt(question):
     print question
     yes = set(['yes','y','Y'])
@@ -46,6 +48,7 @@ def bool_promt(question):
         else:
             print invalid_yes_no
 
+# display all results returned by Bing, and promt user to give feedbacks
 def display(result):
     i = 0
     rel = 0
@@ -65,6 +68,7 @@ def display(result):
         
     return rel
 
+# promt user for a query and a target
 def getQuery():
     print search_promt
     line = sys.stdin.readline()
@@ -76,6 +80,7 @@ def getQuery():
         query = query + word + '%27'
         query_list.append(word)
     return line, query, query_list, target
+
 
 if __name__ =="__main__":
     line, query, query_list, target = getQuery()

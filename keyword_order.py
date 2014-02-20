@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Reorder the query based on results and relevance feedback
+# Simply call set_order with parameters of current query and the query results( with relevance feedback ) 
+# to get best query for next iteration( reordered query )
+
 import urllib2
 import base64
 import json
