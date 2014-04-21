@@ -10,7 +10,7 @@ import re
 from rocchio import rocchio
 
 #Provide your account key here
-accountKey = 'wzQz8YO7jqhGSx1UpWwYRiVwlb3KuGOxavRpambmZY8'
+accountKey = '----Your-Bing-Search-Account-Key-----'
 accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
 headers = {'Authorization': 'Basic ' + accountKeyEnc}
 
