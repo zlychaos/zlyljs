@@ -1,9 +1,3 @@
-ADB Project 1
-============
-
-Liyuan Zheng ( lz2375 )
-Jingsi Li ( jl4165 )
-
 File List
 ---------
 * search.py
