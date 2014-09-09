@@ -20,7 +20,7 @@ What is implemented in rocchio.py will be talked about in the next section. Dict
 The results of queries have a consistant structure. We load the results from json object returned by Bing. Every result of a query will be assigned a 'Relevant' field when user provides feedback. With the consistancy, at each step of the processing ( adding terms using rocchio and reordering ), the program can recognize and use the results and the feedback. 
 
 Query Modification Method
--------------------------        
+-------------------------- 
 We mainly referred to the Rocchio algorithm for relevance feedback to implement the query modification method. With this algorithm, we can find a query vector, denoted as q, that maximazes similarity with relevant documents while minimizing similarity with nonrelevant documents. 
 Our program only analyzes the title and description of each result. Hashtables are created to store words from relevant results  (named rel_hashtable) and words from nonrelevant results  (named nonrel_hashtable). 
 
